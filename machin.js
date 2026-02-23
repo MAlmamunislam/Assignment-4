@@ -1,3 +1,6 @@
+
+
+
 function toggleJobDetails(Id) {
   // this single part help by gemini ----start-----
   let allButtons = document.querySelectorAll(".Menu-btn");
@@ -12,6 +15,9 @@ function toggleJobDetails(Id) {
   //     get and style for button
   const allButton = document.getElementById(Id);
   let buttonText = allButton.innerText;
+  document.getElementById("no-job-section").classList.add('hidden')
+
+  
   // console.log(buttonText);
   if (buttonText === "All") {
     allButton.style.backgroundColor = "blue";
@@ -24,22 +30,36 @@ function toggleJobDetails(Id) {
     allButton.style.backgroundColor = "red";
     allButton.style.color = "white";
   }
-  if (Id === "interview-button") {
-    document.getElementById("interview-section").classList.remove("hidden");
-    document.getElementById("allJobs").classList.add("hidden");
-    document.getElementById("rejected-section").classList.add("hidden");
-    totalJob.innerText = interviewArray.length;
-  } else if (Id === "all-button") {
- 
-     document.getElementById("interview-section").classList.add("hidden");
-     document.getElementById("rejected-section").classList.add("hidden");
 
-     document.getElementById("allJobs").classList.remove("hidden");
-     totalJob.innerText = allCards.children.length;
-}else if (Id === "rejected-button") {
-    document.getElementById("rejected-section").classList.remove("hidden");
-    document.getElementById("interview-section").classList.add("hidden");
-    document.getElementById("allJobs").classList.add("hidden");
-    totalJob.innerText = rejectedArray.length;
-  }
+
+  
+     if (Id == "interview-button") {
+        allCards.classList.add('hidden');
+        getEnterviewSection.classList.remove('hidden')
+       interview();
+       totalJob.innerText=interviewArray.length;
+        if( interviewArray.length <= 0){
+          document.getElementById("no-job-section").classList.remove('hidden');
+         }
+       console.log('inetview click')
+    } else if (Id == "all-button") {
+        allCards.classList.remove('hidden');
+        getEnterviewSection.classList.add('hidden');
+        totalJob.innerText=allCards.children.length;
+           if (allCards.children.length >= 1) {
+            document.getElementById("no-job-section").classList.add('hidden');
+
+        }
+        console.log('all button click')
+    } else if (Id =="rejected-button") {
+        allCards.classList.add('hidden');
+        getEnterviewSection.classList.remove('hidden');
+        totalJob.innerText=rejectedArray.length;
+        
+         rejectJob();
+         if(rejectedArray.length <= 0){
+          document.getElementById("no-job-section").classList.remove('hidden');
+         }
+         console.log('reject')
+    }
 }

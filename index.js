@@ -1,14 +1,23 @@
-// get data from local storage
+// get count from local storage
 let totalCount = document.getElementById("totalCount");
 let interviewCount = document.getElementById("interviewCount");
-let getEnterviewSection = document.getElementById("interview-section");
-let getRejectedSection = document.getElementById("rejected-section");
 let rejectedCount = document.getElementById("rejectedCount");
+// get button
+let allBtn = document.getElementById("all-button");
+const interviewBtn = document.getElementById("interview-button");
+const rejectedBtn = document.getElementById("rejected-button");
+
+// get section
+let getEnterviewSection = document.getElementById("interview-section");
 let totalJob = document.getElementById("totalJob");
 let allCards = document.getElementById("allJobs");
+const mainContainer = document.querySelector("main");
+// ----------
 // make empty array for interview and rejected jobs
 let interviewArray = [];
 let rejectedArray = [];
+let statuss = "all";
+
 // get totalCount
 totalJob.innerText = allCards.children.length;
 function updateCounts() {
@@ -19,8 +28,27 @@ function updateCounts() {
 }
 updateCounts();
 
+const deleteButtons = document.querySelectorAll(".delete-btn");
+totalDisplay = document.getElementById("totalCount");
+
+// -----deleting
+
+deleteButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const card = this.closest(".job-card");
+    card.remove();
+    let currentTotal = parseInt(totalDisplay.innerText);
+    if (currentTotal > 0) {
+      totalDisplay.innerText = currentTotal - 1;
+    }
+    if (allCards.children.length <= 0) {
+      document.getElementById("no-job-section").classList.remove("hidden");
+    }
+  });
+});
+
 // add eventlistener to all cards
-allCards.addEventListener("click", function (event) {
+mainContainer.addEventListener("click", function (event) {
   if (event.target.classList.contains("apple-button")) {
     let parentNode = event.target.parentNode;
     let status = parentNode.querySelector(".Not-Applied").innerText;
@@ -28,7 +56,7 @@ allCards.addEventListener("click", function (event) {
     let jobTitle = parentNode.querySelector("p").innerText;
     let jobMetaInfo = parentNode.querySelectorAll("p")[1].innerText;
     let jobDescription = parentNode.querySelectorAll("p")[2].innerText;
-    parentNode.querySelector(".Not-Applied").innerText = "Applied";
+    parentNode.querySelector(".Not-Applied").innerText = "INTERVIEW";
     parentNode.querySelector(".Not-Applied").style.color = "green";
     parentNode.querySelector(".Not-Applied").style.backgroundColor =
       "lightgreen";
@@ -37,19 +65,25 @@ allCards.addEventListener("click", function (event) {
       companyName,
       jobTitle,
       jobMetaInfo,
-      status,
+      status:'INTERVIEW',
       jobDescription,
     };
 
     let jobExist = interviewArray.find(
-      (job) => job.companyName === jobData.companyName,
+      (job) => job.companyName == jobData.companyName,
     );
     if (!jobExist) {
       interviewArray.push(jobData);
     }
-    
+    rejectedArray = rejectedArray.filter(
+      (item) => item.companyName != jobData.companyName,
+    );
+    updateCounts();
+    if (statuss = "interview-button") {
+      interview();
+    }
 
-    interview();
+   
   } else if (event.target.classList.contains("reject-button")) {
     let parentNode = event.target.parentNode;
     let status = parentNode.querySelector(".Not-Applied").innerText;
@@ -65,29 +99,35 @@ allCards.addEventListener("click", function (event) {
       companyName,
       jobTitle,
       jobMetaInfo,
-      status,
+      status:'Rejected',
       jobDescription,
     };
 
     let jobExist = rejectedArray.find(
-      (job) => job.companyName === jobData.companyName,
+      (job) => job.companyName == jobData.companyName,
     );
     if (!jobExist) {
       rejectedArray.push(jobData);
     }
-    
+    interviewArray = interviewArray.filter(
+      (item) => item.companyName != jobData.companyName,
+    );
 
-    rejectJob();
+    if (statuss == "rejected-button") {
+      rejectJob();
+    }
+    updateCounts() ;
+
+    
   }
 });
 function interview() {
   getEnterviewSection.innerHTML = "";
   for (let job of interviewArray) {
-    console.log(job);
     let div = document.createElement("div");
     div.innerHTML = `
      <div
-          class="bg-[#F1F2F4] p-[24px] mx-4 rounded-md  border  flex justify-between  border-green-500 border-l-4   hover:border-[#006e0f] transition-colors duration-300 mb-5"
+          class="job-card bg-[#F1F2F4] p-[24px] mx-4 rounded-md  border  flex justify-between  border-green-500 border-l-4   hover:border-[#006e0f] transition-colors duration-300 mb-5"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -99,14 +139,14 @@ function interview() {
             <p class="text-[#64748B] text-[14px]">
               ${job.jobMetaInfo}
             </p>
-            <button
-              class="Applied btn w-[113px] h-[36px] bg-[#96F291] text-[14px] text-green-800
+            <p
+              class="Not-Applied btn w-[113px] h-[36px] bg-[#96F291] text-[14px] text-green-800
                mt-[20px] mb-[8px]"
             >
-               Applied     
-            </button>
+               ${job.status}     
+            </p>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-              ${job.jobDescription}
+             Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -130,18 +170,18 @@ function interview() {
           
           `;
     getEnterviewSection.appendChild(div);
-    updateCounts();
+    
   }
 }
 
 function rejectJob() {
-  getRejectedSection.innerHTML = "";
+  getEnterviewSection.innerHTML = "";
   for (let reject of rejectedArray) {
     console.log(reject);
     let div = document.createElement("div");
     div.innerHTML = `
      <div
-          class="bg-[#F1F2F4] p-[24px] mx-4 rounded-md  border  flex justify-between  border-red-500 border-l-4   hover:border-red-800 transition-colors duration-300 mb-5"
+          class="job-card bg-[#F1F2F4] p-[24px] mx-4 rounded-md  border  flex justify-between  border-red-500 border-l-4   hover:border-red-800 transition-colors duration-300 mb-5"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -154,13 +194,13 @@ function rejectJob() {
               ${reject.jobMetaInfo}
             </p>
             <button
-              class="Applied btn w-[113px] h-[36px] bg-[#FFCCCB] text-[14px] text-[#FF004A]
+              class="Not-Applied btn w-[113px] h-[36px] bg-[#FFCCCB] text-[14px] text-[#FF004A]
                mt-[20px] mb-[8px]"
             >
-               Rejected     
+               ${reject.status}    
             </button>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-              ${reject.jobDescription}
+            Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -183,7 +223,8 @@ function rejectJob() {
         </div>
           
           `;
-    getRejectedSection.appendChild(div);
-    updateCounts();
+    getEnterviewSection.appendChild(div);
+    
   }
 }
+toggleJobDetails(statuss);
