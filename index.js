@@ -56,7 +56,7 @@ mainContainer.addEventListener("click", function (event) {
     let jobTitle = parentNode.querySelector("p").innerText;
     let jobMetaInfo = parentNode.querySelectorAll("p")[1].innerText;
     let jobDescription = parentNode.querySelectorAll("p")[2].innerText;
-    parentNode.querySelector(".Not-Applied").innerText = "INTERVIEW";
+    parentNode.querySelector(".Not-Applied").innerText = "Interview";
     parentNode.querySelector(".Not-Applied").style.color = "green";
     parentNode.querySelector(".Not-Applied").style.backgroundColor =
       "lightgreen";
@@ -65,7 +65,7 @@ mainContainer.addEventListener("click", function (event) {
       companyName,
       jobTitle,
       jobMetaInfo,
-      status:'INTERVIEW',
+      status:'Interview',
       jobDescription,
     };
 
