@@ -34,23 +34,29 @@
   </head>
   <body>
     <header
-      class="w-full max-w-[1280px] mx-auto px-4 md:px-8 lg:w-[80%] py-4 border-b border-[#E6E7E9]"
+      class="w-full max-w-[1280px] mx-auto px-4 md:px-8 lg:w-[80%] py-4 border-b border-[#ebf0f5]"
     >
       <h1 class="text-[#002C5C] text-[25px] font-bold mt-[16px]">
         Job Application Tracker
       </h1>
-      <div class="grid grid-cols-3 gap-[16px] mt-[20px]">
-        <div class="bg-[#F1F2F4] p-4 rounded-md">
+      <div class="grid grid-cols-3 gap-[16px] mt-[20px] mb-[16px]">
+        <div
+          class="bg-[#F1F2F4] p-4 rounded-md border border-[#d0d1d4] hover:border-[#002C5C] transition-colors duration-300"
+        >
           <p class="text-[14px] font-medium">Total</p>
           <p id="totalCount" class="text-[24px] font-bold text-[#002C5C]">0</p>
         </div>
-        <div class="bg-[#F1F2F4] p-4 rounded-md">
+        <div
+          class="bg-[#F1F2F4] p-4 rounded-md border border-[#d0d1d4] hover:border-[#10B981] transition-colors duration-300"
+        >
           <p class="text-[14px] font-medium">Interview</p>
           <p id="interviewCount" class="text-[24px] font-bold text-[#10B981]">
             0
           </p>
         </div>
-        <div class="bg-[#F1F2F4] p-4 rounded-md">
+        <div
+          class="bg-[#F1F2F4] p-4 rounded-md border border-[#d0d1d4] hover:border-[#EF4444] transition-colors duration-300"
+        >
           <p class="text-[14px] font-medium">Rejected</p>
           <p id="rejectedCount" class="text-[24px] font-bold text-[#EF4444]">
             0
@@ -67,29 +73,38 @@
           </h1>
         </div>
         <div>
-          <p><span id="totalJob">8</span> job</p>
+          <p><span id="totalJob">0</span> job</p>
         </div>
       </div>
       <div>
         <div>
           <button
+            onclick="toggleJobDetails('all-button')"
             id="all-button"
-            class="btn bg-blue-700 text-white w-[80px] h-[32px]"
+            class=" Menu-btn btn  w-[80px] h-[32px] bg-blue-600 text-white"
           >
             All
           </button>
-          <button id="interview-button" class="btn w-[80px] h-[32px]">
+          <button
+            onclick="toggleJobDetails('interview-button')"
+            id="interview-button"
+            class="Menu-btn btn w-[80px] h-[32px]"
+          >
             Interview
           </button>
-          <button id="rejected-button" class="btn w-[80px] h-[32px]">
+          <button
+            onclick="toggleJobDetails('rejected-button')"
+            id="rejected-button"
+            class="Menu-btn btn w-[80px] h-[32px]"
+          >
             Rejected
           </button>
         </div>
       </div>
-      <section id="allJobs">
+      <section id="allJobs" class="space-y-[16px]">
         <!-- 1 card  -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class=" job-card bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -102,8 +117,7 @@
               Remote • Full-time • $130,000 - $175,000
             </p>
             <button
-              
-              class=" Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
+              class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
             </button>
@@ -132,7 +146,7 @@
         </div>
         <!-- 2 card -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">WebFlow Agency</h2>
@@ -143,8 +157,7 @@
               Los Angeles, CA • Part-time • $80,000 - $120,000
             </p>
             <button
-              
-              class="Not-Applied  btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
+              class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
             </button>
@@ -173,7 +186,7 @@
         </div>
         <!-- 3 card -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -186,7 +199,6 @@
               Boston, MA • Full-time • $125,000 - $165,000
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
@@ -216,7 +228,7 @@
         </div>
         <!-- 4 card  -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">CloudFirst Inc</h2>
@@ -227,7 +239,6 @@
               Seattle, WA • Full-time • $140,000 - $190,000
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
@@ -257,7 +268,7 @@
         </div>
         <!-- 5 card  -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -270,7 +281,6 @@
               Austin, TX • Full-time • $110,000 - $150,000
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
@@ -301,7 +311,7 @@
         </div>
         <!-- 6 card -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -314,7 +324,6 @@
               New York, NY • Full-time • $130,000 - $170,00
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
@@ -345,7 +354,7 @@
         </div>
         <!-- 7 card -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">StartupXYZ</h2>
@@ -356,7 +365,6 @@
               Remote • Full-time • $120,000 - $160,000
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
@@ -387,7 +395,7 @@
         </div>
         <!-- 8 card  -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -400,13 +408,14 @@
               San Francisco, CA • Full-time • $130,000 - $175,000
             </p>
             <button
-               
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
             </button>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-              We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.
+              We are looking for an experienced Frontend Developer to build
+              scalable web applications using React and TypeScript. You will
+              work with a talented team on cutting-edge projects.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -429,7 +438,7 @@
         </div>
         <!-- 9 card -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -442,13 +451,14 @@
               San Francisco, CA • Full-time • $130,000 – $175,000
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
             </button>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-              We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.
+              We are looking for an experienced Frontend Developer to build
+              scalable web applications using React and TypeScript. You will
+              work with a talented team on cutting-edge projects.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -471,7 +481,7 @@
         </div>
         <!-- 10 card  -->
         <div
-          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between"
+          class="bg-[#F1F2F4] p-[24px] rounded-md mt-[16px] border border-[#d0d1d4] flex justify-between hover:border-[#002C5C] transition-colors duration-300"
         >
           <div class="">
             <h2 class="text-[#002C5C] text-[18px] font-bold">
@@ -484,13 +494,15 @@
               New York, NY • Hybrid • $95,000 – $120,000
             </p>
             <button
-              
               class="Not-Applied btn w-[113px] h-[36px] bg-[#EEF4FF] text-[14px] mt-[20px] mb-[8px]"
             >
               Not Applied
             </button>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-              We are seeking a skilled Full Stack Developer with experience in Node.js and React. The candidate will collaborate with cross-functional teams to develop scalable and high-performance web applications.
+              We are seeking a skilled Full Stack Developer with experience in
+              Node.js and React. The candidate will collaborate with
+              cross-functional teams to develop scalable and high-performance
+              web applications.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -513,7 +525,21 @@
         </div>
       </section>
     </main>
+    <!-- interview section  -->
+     <section id="interview-section" class="w-full max-w-[1280px] mx-auto  md:px-8 lg:w-[80%]  hidden">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi esse dolore sapiente laboriosam asperiores quis id omnis quas velit officiis alias provident sint ducimus consequuntur, maiores dolores officia debitis.</p>
 
+      </section>
+
+
+
+
+
+       <!-- reject section  -->
+     <section id="rejected-section" class="w-full max-w-[1280px] mx-auto  md:px-8 lg:w-[80%]  hidden">
+      <p>hellow</p>
+      </section>
+    <script src="./machin.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
