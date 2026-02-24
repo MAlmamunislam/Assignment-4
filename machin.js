@@ -1,7 +1,5 @@
-
-
-
 function toggleJobDetails(Id) {
+  currentTab = Id;
   // button style- remove ----
   let allButtons = document.querySelectorAll(".Menu-btn");
   allButtons.forEach((element) => {
@@ -10,14 +8,13 @@ function toggleJobDetails(Id) {
     element.style.backgroundColor = "";
     element.style.color = "";
   });
-  // ---- 
+  // ----
 
   //     get and style for button
   const allButton = document.getElementById(Id);
   let buttonText = allButton.innerText;
-  document.getElementById("no-job-section").classList.add('hidden')
+  document.getElementById("no-job-section").classList.add("hidden");
 
-  
   // console.log(buttonText);
   if (buttonText === "All") {
     allButton.style.backgroundColor = "blue";
@@ -31,36 +28,33 @@ function toggleJobDetails(Id) {
     allButton.style.color = "white";
   }
 
+  if (Id == "interview-button") {
+    allCards.classList.add("hidden");
+    getEnterviewSection.classList.remove("hidden");
+    interview();
 
-  
-     if (Id == "interview-button") {
-        allCards.classList.add('hidden');
-        getEnterviewSection.classList.remove('hidden')
-       interview();
-       
-       totalJob.innerText=interviewArray.length;
-        if( interviewArray.length <= 0){
-          document.getElementById("no-job-section").classList.remove('hidden');
-         }
-       console.log('inetview click')
-    } else if (Id == "all-button") {
-        allCards.classList.remove('hidden');
-        getEnterviewSection.classList.add('hidden');
-        totalJob.innerText=allCards.children.length;
-           if (allCards.children.length >= 1) {
-            document.getElementById("no-job-section").classList.add('hidden');
-
-        }
-        console.log('all button click')
-    } else if (Id =="rejected-button") {
-        allCards.classList.add('hidden');
-        getEnterviewSection.classList.remove('hidden');
-        totalJob.innerText=rejectedArray.length;
-        
-         rejectJob();
-         if(rejectedArray.length <= 0){
-          document.getElementById("no-job-section").classList.remove('hidden');
-         }
-         console.log('reject')
+    totalJob.innerText = interviewArray.length;
+    if (interviewArray.length <= 0) {
+      document.getElementById("no-job-section").classList.remove("hidden");
     }
+    console.log("inetview click");
+  } else if (Id == "all-button") {
+    allCards.classList.remove("hidden");
+    getEnterviewSection.classList.add("hidden");
+    totalJob.innerText = allCards.children.length;
+    if (allCards.children.length >= 1) {
+      document.getElementById("no-job-section").classList.add("hidden");
+    }
+    console.log("all button click");
+  } else if (Id == "rejected-button") {
+    allCards.classList.add("hidden");
+    getEnterviewSection.classList.remove("hidden");
+    totalJob.innerText = rejectedArray.length;
+
+    rejectJob();
+    if (rejectedArray.length <= 0) {
+      document.getElementById("no-job-section").classList.remove("hidden");
+    }
+    console.log("reject");
+  }
 }

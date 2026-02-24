@@ -17,7 +17,7 @@ const mainContainer = document.querySelector("main");
 let interviewArray = [];
 let rejectedArray = [];
 let statuss = "all";
-
+let currentTab = "all-button";
 // get totalCount
 totalJob.innerText = allCards.children.length;
 function updateCounts() {
@@ -65,7 +65,7 @@ mainContainer.addEventListener("click", function (event) {
       companyName,
       jobTitle,
       jobMetaInfo,
-      status:'Interview',
+      status: "Interview",
       jobDescription,
     };
 
@@ -79,14 +79,12 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != jobData.companyName,
     );
     updateCounts();
-    // if (statuss = "interview-button") {
-    //   interview();
-    // }
-    rejectJob();
+    // re-render only the currently active section
+    if (currentTab === "interview-button") {
       interview();
-    // interview();
-
-   
+    } else if (currentTab === "rejected-button") {
+      rejectJob();
+    }
   } else if (event.target.classList.contains("reject-button")) {
     let parentNode = event.target.parentNode;
     let status = parentNode.querySelector(".Not-Applied").innerText;
@@ -102,7 +100,7 @@ mainContainer.addEventListener("click", function (event) {
       companyName,
       jobTitle,
       jobMetaInfo,
-      status:'Rejected',
+      status: "Rejected",
       jobDescription,
     };
 
@@ -116,19 +114,20 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != jobData.companyName,
     );
 
-    // if (statuss == "rejected-button") {
-    //   rejectJob();
-    //   interview();
-    // }
-    updateCounts() ;
-    rejectJob();
+    updateCounts();
+    // re-render only the currently active section
+    if (currentTab === "rejected-button") {
+      rejectJob();
+    } else if (currentTab === "interview-button") {
       interview();
-
-    
+    }
   }
 });
 function interview() {
   getEnterviewSection.innerHTML = "";
+  if (interviewArray.length <= 0) {
+    document.getElementById("no-job-section").classList.remove("hidden");
+  }
   for (let job of interviewArray) {
     let div = document.createElement("div");
     div.innerHTML = `
@@ -152,7 +151,7 @@ function interview() {
                ${job.status}     
             </p>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-             Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.
+            ${job.jobDescription}
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -176,12 +175,14 @@ function interview() {
           
           `;
     getEnterviewSection.appendChild(div);
-    
   }
 }
 
 function rejectJob() {
   getEnterviewSection.innerHTML = "";
+  if (rejectedArray.length <= 0) {
+    document.getElementById("no-job-section").classList.remove("hidden");
+  }
   for (let reject of rejectedArray) {
     console.log(reject);
     let div = document.createElement("div");
@@ -206,7 +207,7 @@ function rejectJob() {
                ${reject.status}    
             </button>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-            Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.
+            ${reject.jobDescription}
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -230,7 +231,6 @@ function rejectJob() {
           
           `;
     getEnterviewSection.appendChild(div);
-    
   }
 }
 toggleJobDetails(statuss);
