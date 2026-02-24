@@ -19,9 +19,10 @@ let rejectedArray = [];
 let statuss = "all";
 let currentTab = "all-button";
 // get totalCount
-totalJob.innerText = allCards.children.length;
+
 function updateCounts() {
   totalCount.innerText = allCards.children.length;
+  totalJob.innerText = totalCount.innerText;
 
   interviewCount.innerText = interviewArray.length;
   rejectedCount.innerText = rejectedArray.length;
@@ -151,7 +152,7 @@ function interview() {
                ${job.status}     
             </p>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-            ${job.jobDescription}
+            Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
@@ -207,7 +208,7 @@ function rejectJob() {
                ${reject.status}    
             </button>
             <p class="text-[#323B49] text-[14px] mb-[20px]">
-            ${reject.jobDescription}
+            Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.
             </p>
             <button
               class="apple-button btn btn-outline btn-success w-[97px] h-[36px]"
