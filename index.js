@@ -79,9 +79,12 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != jobData.companyName,
     );
     updateCounts();
-    if (statuss = "interview-button") {
+    // if (statuss = "interview-button") {
+    //   interview();
+    // }
+    rejectJob();
       interview();
-    }
+    // interview();
 
    
   } else if (event.target.classList.contains("reject-button")) {
@@ -113,10 +116,13 @@ mainContainer.addEventListener("click", function (event) {
       (item) => item.companyName != jobData.companyName,
     );
 
-    if (statuss == "rejected-button") {
-      rejectJob();
-    }
+    // if (statuss == "rejected-button") {
+    //   rejectJob();
+    //   interview();
+    // }
     updateCounts() ;
+    rejectJob();
+      interview();
 
     
   }

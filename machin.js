@@ -2,7 +2,7 @@
 
 
 function toggleJobDetails(Id) {
-  // this single part help by gemini ----start-----
+  // button style- remove ----
   let allButtons = document.querySelectorAll(".Menu-btn");
   allButtons.forEach((element) => {
     element.classList.remove("bg-blue-600");
@@ -10,7 +10,7 @@ function toggleJobDetails(Id) {
     element.style.backgroundColor = "";
     element.style.color = "";
   });
-  // ---- end
+  // ---- 
 
   //     get and style for button
   const allButton = document.getElementById(Id);
@@ -37,6 +37,7 @@ function toggleJobDetails(Id) {
         allCards.classList.add('hidden');
         getEnterviewSection.classList.remove('hidden')
        interview();
+       
        totalJob.innerText=interviewArray.length;
         if( interviewArray.length <= 0){
           document.getElementById("no-job-section").classList.remove('hidden');
